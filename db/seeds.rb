@@ -7,3 +7,35 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Job.create(
+  company_name: "TechCorp",
+  job_ad_url: "https://techcorp.com/careers/12345",
+  job_title: "Software Engineer",
+  company_url: "https://techcorp.com",
+  notes: "Exciting opportunity to work on cutting-edge technology."
+)
+
+Job.create(
+  company_name: "Amazone",
+  job_ad_url: "https://amazone.com/careers/12345",
+  job_title: "Senior Software Engineer",
+  company_url: "https://amazone.com",
+  notes: "Still waiting to hear back from them."
+)
+
+Job.create(
+  company_name: "InnoSoft",
+  job_ad_url: "https://innosoft.com/jobs/67890",
+  job_title: "Full Stack Developer",
+  company_url: "https://innosoft.com",
+  notes: "Great company culture and benefits."
+)
+
+Job.create(
+  company_name: "DataWorks",
+  job_ad_url: "https://dataworks.com/opportunities/54321",
+  job_title: "Data Scientist",
+  company_url: "https://dataworks.com",
+  notes: "Looking forward to the interview process."
+)
