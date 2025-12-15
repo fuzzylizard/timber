@@ -1,17 +1,21 @@
 import './App.css'
-import {Button} from "@/components/ui/button.tsx";
 import Header from "@/components/Header.tsx";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
+import Jobs from "@/components/Jobs.tsx";
+
+const queryClient = new QueryClient()
 
 function App() {
-
-  return (
-    <>
-      <div className="flex flex-col w-full items-center justify-center">
-        <Header />
-        <Button variant="outline">Click me</Button>
-      </div>
-    </>
-  )
+    return (
+        <QueryClientProvider client={queryClient}>
+            <div className="flex min-h-screen flex-col">
+                <Header/>
+                <Jobs />
+            </div>
+            <ReactQueryDevtools />
+        </QueryClientProvider>
+    )
 }
 
 export default App

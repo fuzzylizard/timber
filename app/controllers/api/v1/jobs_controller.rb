@@ -1,6 +1,50 @@
+# frozen_string_literal: true
+
 class Api::V1::JobsController < ApplicationController
+
+  # Returns all jobs
+  # GET /api/v1/jobs
   def index
     jobs = Job.all
     render json: jobs
+  end
+
+  # Gets a specific job by ID
+  # GET /api/v1/jobs/:id
+  def show
+    job = Job.find(params[:id])
+    render json: job
+  end
+
+  # Creates a new job
+  # POST /api/v1/jobs
+  def create
+    job = Job.new(job_params)
+
+    if job.save
+      render json: job, status: :created
+    else
+      render json: { errors: job.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  # Updates a job
+  # PUT /api/v1/jobs/:id
+  def update
+    job = Job.find(params[:id])
+
+    if job.update(job_params)
+      render json: job
+    else
+      render json: { errors: job.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  # Deletes a job
+  # DELETE /api/v1/jobs/:id
+  def destroy
+    job = Job.find(params[:id])
+    job.destroy
+    head :no_content
   end
 end
