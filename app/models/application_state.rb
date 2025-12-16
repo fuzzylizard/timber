@@ -1,0 +1,2 @@
+class ApplicationState < ApplicationRecord
+end

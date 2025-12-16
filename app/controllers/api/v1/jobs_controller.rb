@@ -47,4 +47,10 @@ class Api::V1::JobsController < ApplicationController
     job.destroy
     head :no_content
   end
+
+  private
+
+  def job_params
+    params.require(:job).permit(:company_name, :job_ad_url, :job_title, :company_url, :notes, :application_state_id)
+  end
 end

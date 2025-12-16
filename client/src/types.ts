@@ -10,5 +10,5 @@ export interface Job {
 
 export interface Column {
     id: number;
-    columnName: string;
+    name: string;
 }

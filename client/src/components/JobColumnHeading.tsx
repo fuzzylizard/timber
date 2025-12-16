@@ -1,9 +1,9 @@
 interface JobColumnHeadingProps {
-    columnName: string;
+  columnName: string;
 }
 
 export default function JobColumnHeading({columnName}: JobColumnHeadingProps) {
-    return (
-        <h2 className="font-bold text-lg text-center">{columnName}</h2>
-    )
+  return (
+    <h2 className="font-bold text-lg text-center">{columnName}</h2>
+  )
 }
