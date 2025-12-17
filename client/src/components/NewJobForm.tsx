@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -9,17 +8,22 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
+import { useCreateJobMutation } from "@/hooks/use-jobs-hooks";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 type Inputs = {
-  companyName: string;
-  position: string;
-  jobAdUrl: string;
+  company_name: string;
+  job_ad_url: string;
+  job_title: string;
+  company_url: string;
   notes: string;
-  applicationState: string;
+  application_state_id: string;
 };
 
 export default function NewJobForm() {
+  const [open, setOpen] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -27,13 +31,33 @@ export default function NewJobForm() {
     formState: { errors },
   } = useForm<Inputs>();
 
+  function handleCancel() {
+    reset();
+    setOpen(false);
+  }
+
+  const mutation = useCreateJobMutation();
+
   function onSubmit(data: Inputs) {
     console.log(data);
-    reset();
+
+    mutation.mutate(
+      { job: data },
+      {
+        onSuccess: () => {
+          console.log("Job created successfully");
+          setOpen(false);
+          reset();
+        },
+        onError: () => {
+          console.error("Error creating job");
+        },
+      }
+    );
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="cursor-pointer w-full">New Job</Button>
       </DialogTrigger>
@@ -48,26 +72,28 @@ export default function NewJobForm() {
         <form id="new-job-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4">
             <div className="grid gap-3">
-              <Label htmlFor="companyName">Company Name</Label>
+              <Label htmlFor="company_name">Company Name</Label>
               <input
-                {...register("companyName", { required: true })}
+                {...register("company_name", { required: true })}
                 className="border rounded-md p-2"
               />
-              {errors.companyName && (
-                <span className="text-red-500">This field is required</span>
+              {errors.company_name && (
+                <span className="text-destructive text-xs">
+                  This field is required
+                </span>
               )}
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="position">Position</Label>
+              <Label htmlFor="job_title">Job Title</Label>
               <input
-                {...register("position")}
+                {...register("job_title")}
                 className="border rounded-md p-2"
               />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="jobAdUrl">Job Ad URL</Label>
+              <Label htmlFor="job_ad_url">Job Ad URL</Label>
               <input
-                {...register("jobAdUrl")}
+                {...register("job_ad_url")}
                 className="border rounded-md p-2"
               />
             </div>
@@ -79,19 +105,18 @@ export default function NewJobForm() {
               />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="applicationState">Application State</Label>
+              <Label htmlFor="application_state_id">Application State</Label>
               <input
-                {...register("applicationState")}
+                {...register("application_state_id")}
                 className="border rounded-md p-2"
               />
             </div>
           </div>
 
           <div className="text-right pt-4">
-            <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </DialogClose>
-
+            <Button variant="outline" onClick={handleCancel}>
+              Cancel
+            </Button>
             <input
               type="submit"
               value="Save"

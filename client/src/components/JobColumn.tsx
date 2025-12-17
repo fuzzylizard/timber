@@ -29,7 +29,7 @@ export default function JobColumn({ column }: JobColumnProps) {
   return (
     <>
       <div
-        className="w-60 bg-slate-100 p-2 h-full overflow-hidden my-5 border rounded-xl"
+        className="w-60 bg-slate-100 p-2 max-h-screen overflow-y-auto my-5 border rounded-xl"
         key={column.id}
       >
         <h2 className="font-bold text-lg text-center">{column.name}</h2>

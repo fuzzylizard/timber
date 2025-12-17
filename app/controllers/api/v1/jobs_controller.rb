@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::JobsController < ApplicationController
-
+  skip_before_action :verify_authenticity_token
   # Returns all jobs
   # GET /api/v1/jobs
   def index
