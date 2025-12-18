@@ -21,7 +21,7 @@ export default function JobBoard() {
   }
 
   return (
-    <div className="flex flex-row gap-1 m-2">
+    <div className="grow">
       {data.map((column: Column) => (
         <JobColumn column={column} key={column.id} />
       ))}

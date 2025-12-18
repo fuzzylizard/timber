@@ -6,7 +6,7 @@ export function useCreateJobMutation() {
 
   return useMutation({
     mutationFn: async (job: unknown) => {
-      postData("http://127.0.0.1:3000/api/v1/jobs", job);
+      postData(`${import.meta.env.VITE_API_URL}/jobs`, job);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["jobsData"] });
