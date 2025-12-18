@@ -11,13 +11,16 @@ interface JobColumnProps {
 
 export default function JobColumn({ column }: JobColumnProps) {
   const { isPending, error, data } = useQuery<Job[]>({
-    queryKey: ["jobsData"],
-    queryFn: () => fetchData(`${import.meta.env.VITE_API_URL}/jobs`),
+    queryKey: ["jobsData", column.name],
+    queryFn: () =>
+      fetchData(
+        `${import.meta.env.VITE_API_URL}/jobs?application_state_id=${column.id}`
+      ),
   });
 
   return (
-    <div className="w-90 bg-accent p-2 m-2 border" key={column.id}>
-      <div className="font-bold text-lg text-center bg-purple-500 text-white p-2 rounded-sm mb-4">
+    <div className="w-90 bg-accent p-2 border" key={column.id}>
+      <div className="text-lg text-center bg-purple-500 text-white p-2 rounded-md mb-4">
         <Calendar className="float-left" />
         <span>{column.name}</span>
         <EllipsisVertical className="float-right" />
@@ -28,7 +31,7 @@ export default function JobColumn({ column }: JobColumnProps) {
       {!data && <div>No jobs found.</div>}
       {data && (
         <div className="pt-4 pb-1">
-          <div className="overflow-auto max-h-[calc(90dvh-9.5rem)]">
+          <div className="overflow-auto min-h-[calc(90dvh-8.5rem)]">
             <JobsList jobs={data} />
           </div>
         </div>

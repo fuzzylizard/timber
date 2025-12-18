@@ -5,7 +5,11 @@ class Api::V1::JobsController < ApplicationController
   # Returns all jobs
   # GET /api/v1/jobs
   def index
-    jobs = Job.all
+    if params[:application_state_id]
+      jobs = Job.where(application_state_id: params[:application_state_id])
+    else
+      jobs = Job.all
+    end
     render json: jobs
   end
 

@@ -9,7 +9,7 @@ export default function JobsList({ jobs }: JobsListProps) {
   return (
     <>
       {jobs.map((job: Job) => (
-        <div key={job.id} className="my-1">
+        <div key={job.id} className="my-2">
           <JobDetails job={job} />
         </div>
       ))}
