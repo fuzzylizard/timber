@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useCreateJobMutation } from "@/hooks/use-jobs-hooks";
+import { Plus } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -59,7 +60,9 @@ export default function NewJobForm() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="cursor-pointer w-full">New Job</Button>
+        <Button variant="outline" className="cursor-pointer w-full">
+          <Plus className="size-4" />
+        </Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[425px]">

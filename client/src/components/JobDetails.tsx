@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Ellipsis } from "lucide-react";
+import { EllipsisVertical } from "lucide-react";
 import { formatRelativeDate } from "@/lib/utils";
 
 interface JobDetailsProps {
@@ -15,16 +15,16 @@ interface JobDetailsProps {
 
 export default function JobDetails({ job }: JobDetailsProps) {
   return (
-    <Card>
+    <Card className="border-l-6 border-l-purple-500 gap-1">
       <CardHeader>
         <CardTitle>{job.company_name}</CardTitle>
         <CardAction>
-          <Ellipsis />
+          <EllipsisVertical className="text-muted-foreground/50" />
         </CardAction>
       </CardHeader>
       <CardContent>
-        <p>{job.job_title}</p>
-        <p className="text-sm mt-2 text-gray-500 font-semibold">
+        <p className="text-sm">{job.job_title}</p>
+        <p className="text-sm mt-2 text-muted-foreground/50 text-right">
           Applied {formatRelativeDate(job.created_at)}
         </p>
       </CardContent>
