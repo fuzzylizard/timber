@@ -8,6 +8,7 @@ export default function Header() {
           <h1 className="text-xl font-bold text-primary ">Timber Homepage</h1>
         </div>
         <div className="flex flex-row w-1/3 text-muted-foreground justify-center gap-1">
+          Job Search 2026 |
           <Columns3 className="hover:text-foreground" />
           <Settings />
         </div>

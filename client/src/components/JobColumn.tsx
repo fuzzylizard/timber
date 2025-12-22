@@ -21,7 +21,9 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
 
   return (
     <div className="w-90 bg-accent p-2 border" key={column.id}>
-      <div className="text-lg text-center bg-purple-500 text-white p-2 rounded-md mb-4">
+      <div
+        className={`${column.colour} text-lg text-center text-white p-2 rounded-md mb-4`}
+      >
         <div className="float-left">{column.icon}</div>
         <span>{column.name}</span>
         <EllipsisVertical className="float-right" />
@@ -35,7 +37,7 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
       {data && (
         <div className="pt-4 pb-1">
           <div className="overflow-auto max-h-[calc(90dvh-8.5rem)]">
-            <JobsList jobs={data} />
+            <JobsList jobs={data} accentColour={column.colour} />
           </div>
         </div>
       )}

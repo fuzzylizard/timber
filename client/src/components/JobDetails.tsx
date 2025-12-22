@@ -11,11 +11,14 @@ import { formatRelativeDate } from "@/lib/utils";
 
 interface JobDetailsProps {
   job: Job;
+  accentColour: string;
 }
 
-export default function JobDetails({ job }: JobDetailsProps) {
+export default function JobDetails({ job, accentColour }: JobDetailsProps) {
+  const accColour = `border-l-${accentColour.slice(3)}`;
+
   return (
-    <Card className="border-l-6 border-l-purple-500 gap-1">
+    <Card className={`border-l-6 ${accColour} gap-1`}>
       <CardHeader>
         <CardTitle>{job.company_name}</CardTitle>
         <CardAction>

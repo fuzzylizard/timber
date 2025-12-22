@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import type { Column } from "@/types.ts";
 import JobColumn from "./JobColumn";
+import NewJobColumn from "./NewJobColumn";
 
 export default function JobBoard() {
   const { isPending, data, error } = useQuery<Column[]>({
@@ -25,6 +26,7 @@ export default function JobBoard() {
       {data.map((column: Column) => (
         <JobColumn column={column} key={column.id} columns={data} />
       ))}
+      <NewJobColumn />
     </div>
   );
 }

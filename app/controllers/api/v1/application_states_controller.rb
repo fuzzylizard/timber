@@ -4,7 +4,7 @@ class Api::V1::ApplicationStatesController < ApplicationController
 
   # GETS /api/v1/application_states
   def index
-    application_states = ApplicationState.all
+    application_states = ApplicationState.all.order(:id)
 
     render json: application_states
   end
