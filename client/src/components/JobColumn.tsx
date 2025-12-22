@@ -7,9 +7,10 @@ import { Calendar, EllipsisVertical } from "lucide-react";
 
 interface JobColumnProps {
   column: Column;
+  columns: Column[];
 }
 
-export default function JobColumn({ column }: JobColumnProps) {
+export default function JobColumn({ column, columns }: JobColumnProps) {
   const { isPending, error, data } = useQuery<Job[]>({
     queryKey: ["jobsData", column.name],
     queryFn: () =>
@@ -25,7 +26,9 @@ export default function JobColumn({ column }: JobColumnProps) {
         <span>{column.name}</span>
         <EllipsisVertical className="float-right" />
       </div>
-      <NewJobForm />
+
+      <NewJobForm selectedColumnID={column.id} columns={columns} />
+
       {isPending && <div>Loading jobs...</div>}
       {error && <div>Error loading jobs: {String(error)}</div>}
       {!data && <div>No jobs found.</div>}

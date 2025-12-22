@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useCreateJobMutation } from "@/hooks/use-jobs-hooks";
+import type { Column } from "@/types";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -22,7 +23,15 @@ type Inputs = {
   application_state_id: string;
 };
 
-export default function NewJobForm() {
+interface NewJobFormProps {
+  selectedColumnID: number;
+  columns: Column[];
+}
+
+export default function NewJobForm({
+  selectedColumnID,
+  columns,
+}: NewJobFormProps) {
   const [open, setOpen] = useState(false);
 
   const {
@@ -108,11 +117,18 @@ export default function NewJobForm() {
               />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="application_state_id">Application State</Label>
-              <input
+              <Label htmlFor="application_state_id">Column</Label>
+              <select
                 {...register("application_state_id")}
                 className="border rounded-md p-2"
-              />
+                defaultValue={selectedColumnID}
+              >
+                {columns.map((column, index) => (
+                  <option key={index} value={column.id}>
+                    {column.name}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
