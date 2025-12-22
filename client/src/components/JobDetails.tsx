@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { EllipsisVertical } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { formatRelativeDate } from "@/lib/utils";
 
 interface JobDetailsProps {
@@ -19,7 +19,7 @@ export default function JobDetails({ job }: JobDetailsProps) {
       <CardHeader>
         <CardTitle>{job.company_name}</CardTitle>
         <CardAction>
-          <EllipsisVertical className="text-muted-foreground/50" />
+          <Trash2 className="text-muted-foreground/50 size-4" />
         </CardAction>
       </CardHeader>
       <CardContent>
