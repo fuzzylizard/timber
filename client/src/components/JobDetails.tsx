@@ -22,13 +22,13 @@ export default function JobDetails({ job, accentColour }: JobDetailsProps) {
       <CardHeader>
         <CardTitle>{job.company_name}</CardTitle>
         <CardAction>
-          <Trash2 className="text-muted-foreground/50 size-4" />
+          <Trash2 className="text-muted-foreground/50 size-4 cursor-pointer hover:text-foreground" />
         </CardAction>
       </CardHeader>
       <CardContent>
         <p className="text-sm">{job.job_title}</p>
         <p className="text-sm mt-2 text-muted-foreground/50 text-right">
-          Applied {formatRelativeDate(job.created_at)}
+          {formatRelativeDate(job.created_at)}
         </p>
       </CardContent>
     </Card>
