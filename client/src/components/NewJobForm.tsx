@@ -49,8 +49,6 @@ export default function NewJobForm({
   const mutation = useCreateJobMutation();
 
   function onSubmit(data: Inputs) {
-    console.log(data);
-
     mutation.mutate(
       { job: data },
       {

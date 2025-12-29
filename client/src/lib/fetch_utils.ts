@@ -23,3 +23,13 @@ export async function postData<T>(url: string, data: unknown): Promise<T> {
 
   return response.json();
 }
+
+export async function deleteData(url: string): Promise<void> {
+  const response = await fetch(url, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+}

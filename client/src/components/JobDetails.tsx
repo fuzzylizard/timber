@@ -6,8 +6,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Trash2 } from "lucide-react";
 import { formatRelativeDate } from "@/lib/utils";
+import { JobDelete } from "./JobDelete";
+import { useDeleteJobMutation } from "@/hooks/use-jobs-hooks";
 
 interface JobDetailsProps {
   job: Job;
@@ -17,12 +18,28 @@ interface JobDetailsProps {
 export default function JobDetails({ job, accentColour }: JobDetailsProps) {
   const accColour = `border-l-${accentColour.slice(3)}`;
 
+  const mutation = useDeleteJobMutation();
+
+  function handleDelete(id: number): void {
+    mutation.mutate(
+      { jobId: id },
+      {
+        onSuccess: () => {
+          console.log("Job deleted successfully");
+        },
+        onError: () => {
+          console.error("Error deleting job");
+        },
+      }
+    );
+  }
+
   return (
-    <Card className={`border-l-6 ${accColour} gap-1`}>
+    <Card className={`gap-1 border-l-6 ${accColour}`}>
       <CardHeader>
         <CardTitle>{job.company_name}</CardTitle>
         <CardAction>
-          <Trash2 className="text-muted-foreground/50 size-4 cursor-pointer hover:text-foreground" />
+          <JobDelete jobId={job.id} onDelete={handleDelete} />
         </CardAction>
       </CardHeader>
       <CardContent>

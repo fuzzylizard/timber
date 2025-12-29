@@ -8,25 +8,25 @@ export default function JobBoard() {
     queryKey: ["jobColumn"],
     queryFn: async () => {
       const response = await fetch(
-        "http://127.0.0.1:3000/api/v1/application_states"
+        `${import.meta.env.VITE_API_URL}/application_states`
       );
       return await response.json();
     },
   });
 
-  if (isPending) return "Loading...";
-
-  if (error) {
-    console.error(error);
-    return "An error has occurred: " + error.message;
-  }
-
   return (
-    <div className="grow flex flex-row overflow-x-auto">
-      {data.map((column: Column) => (
-        <JobColumn column={column} key={column.id} columns={data} />
-      ))}
-      <NewJobColumn />
-    </div>
+    <>
+      {isPending && <div>Loading jobs...</div>}
+      {error && <div>Error loading jobs: {String(error)}</div>}
+      {!data && <div>No jobs found.</div>}
+      {data && (
+        <div className="grow flex flex-row overflow-x-auto">
+          {data.map((column: Column) => (
+            <JobColumn column={column} key={column.id} columns={data} />
+          ))}
+          <NewJobColumn />
+        </div>
+      )}
+    </>
   );
 }
