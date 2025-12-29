@@ -6,7 +6,7 @@ export function useCreateJobMutation() {
 
   return useMutation({
     mutationFn: async (job: unknown) => {
-      postData(`${import.meta.env.VITE_API_URL}/jobs`, job);
+      await postData(`${import.meta.env.VITE_API_URL}/jobs`, job);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["jobsData"] });
@@ -19,7 +19,6 @@ export function useDeleteJobMutation() {
 
   return useMutation({
     mutationFn: async (jobId: { jobId: number }) => {
-      console.log("Deleting job with ID:", jobId.jobId);
       await deleteData(`${import.meta.env.VITE_API_URL}/jobs/${jobId.jobId}`);
     },
     onSuccess: () => {

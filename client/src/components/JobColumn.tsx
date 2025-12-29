@@ -22,7 +22,7 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
   return (
     <div className="w-90 bg-accent p-2 border" key={column.id}>
       <div
-        className={`text-lg text-center text-white p-2 rounded-md mb-4 ${column.colour}`}
+        className={`text-lg text-center text-white p-2 rounded-md mb-4 bg-purple-500`}
       >
         <div className="float-left">{column.icon}</div>
         <span>{column.name}</span>
@@ -33,11 +33,10 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
 
       {isPending && <div>Loading jobs...</div>}
       {error && <div>Error loading jobs: {String(error)}</div>}
-      {!data && <div>No jobs found.</div>}
       {data && (
         <div className="pt-4 pb-1">
           <div className="overflow-auto h-[calc(90dvh-8.5rem)]">
-            <JobsList jobs={data} accentColour={column.colour} />
+            <JobsList jobs={data} accentColour="bg-purple-500" />
           </div>
         </div>
       )}
