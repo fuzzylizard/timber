@@ -28,6 +28,12 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
         <span>{column.name}</span>
         <EllipsisVertical className="float-right" />
       </div>
+      <div className="text-center mb-2 text-foreground/50">
+        <p>
+          {data ? data.length : 0}{" "}
+          {data ? (data.length === 1 ? "Job" : "Jobs") : "Jobs"}
+        </p>
+      </div>
 
       <NewJobForm selectedColumnID={column.id} columns={columns} />
 

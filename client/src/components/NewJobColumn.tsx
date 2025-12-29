@@ -7,7 +7,7 @@ export default function NewJobColumn() {
       <div className="">
         <Button
           variant="outline"
-          className="text-lg text-center w-full h-full cursor-pointer"
+          className="text-lg text-center w-full h-full cursor-pointer hover:border-slate-400 hover:shadow-sm"
         >
           <Plus /> New Column
         </Button>

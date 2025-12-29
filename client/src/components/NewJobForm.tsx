@@ -68,7 +68,10 @@ export default function NewJobForm({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" className="cursor-pointer w-full">
+        <Button
+          variant="outline"
+          className="cursor-pointer w-full hover:border-slate-400 hover:shadow-sm"
+        >
           <Plus className="size-4" />
         </Button>
       </DialogTrigger>
