@@ -9,6 +9,7 @@ import {
 import { formatRelativeDate } from "@/lib/utils";
 import { JobDelete } from "./JobDelete";
 import { useDeleteJobMutation } from "@/hooks/use-jobs-hooks";
+import { toast } from "sonner";
 
 interface JobDetailsProps {
   job: Job;
@@ -28,9 +29,11 @@ export default function JobDetails({ job, accentColour }: JobDetailsProps) {
       {
         onSuccess: () => {
           console.log("Job deleted successfully");
+          toast.success("Job deleted successfully");
         },
         onError: () => {
           console.error("Error deleting job");
+          toast.error("Error deleting job, please try again");
         },
       }
     );
