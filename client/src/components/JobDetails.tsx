@@ -16,7 +16,9 @@ interface JobDetailsProps {
 }
 
 export default function JobDetails({ job, accentColour }: JobDetailsProps) {
-  const accColour = `border-l-${accentColour.slice(3)}`;
+  // const accColour = `border-l-${accentColour.slice(3)}`;
+  // Temporary fix until I can figure out dynamic class names with Tailwind
+  const accColour = `border-l-purple-500`;
 
   const mutation = useDeleteJobMutation();
 
