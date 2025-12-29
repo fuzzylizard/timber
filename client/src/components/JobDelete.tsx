@@ -21,7 +21,7 @@ export function JobDelete({ jobId, onDelete }: JobDeleteProps) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="ghost">
+        <Button variant="ghost" className="cursor-pointer">
           <Trash2 className="text-muted-foreground/50 size-4 cursor-pointer hover:text-foreground" />
         </Button>
       </AlertDialogTrigger>

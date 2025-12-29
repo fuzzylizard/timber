@@ -54,6 +54,7 @@ export default function NewJobForm({
       {
         onSuccess: () => {
           console.log("Job created successfully");
+
           setOpen(false);
           reset();
         },
