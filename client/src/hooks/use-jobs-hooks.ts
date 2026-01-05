@@ -1,3 +1,4 @@
+import { JobsDataKey } from "@/constants";
 import { deleteData, postData } from "@/lib/fetch_utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -9,7 +10,7 @@ export function useCreateJobMutation() {
       await postData(`${import.meta.env.VITE_API_URL}/jobs`, job);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["jobsData"] });
+      queryClient.invalidateQueries({ queryKey: [JobsDataKey] });
     },
   });
 }
@@ -22,7 +23,7 @@ export function useDeleteJobMutation() {
       await deleteData(`${import.meta.env.VITE_API_URL}/jobs/${jobId.jobId}`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["jobsData"] });
+      queryClient.invalidateQueries({ queryKey: [JobsDataKey] });
     },
   });
 }

@@ -53,12 +53,11 @@ export default function NewJobForm({
       { job: data },
       {
         onSuccess: () => {
-          console.log("Job created successfully");
-
           setOpen(false);
           reset();
         },
         onError: () => {
+          // TODO add toast.error here
           console.error("Error creating job");
         },
       }

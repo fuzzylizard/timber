@@ -4,6 +4,7 @@ import JobsList from "./JobsList";
 import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "@/lib/fetch_utils";
 import { EllipsisVertical } from "lucide-react";
+import { JobsDataKey } from "@/constants";
 
 interface JobColumnProps {
   column: Column;
@@ -12,7 +13,7 @@ interface JobColumnProps {
 
 export default function JobColumn({ column, columns }: JobColumnProps) {
   const { isPending, error, data } = useQuery<Job[]>({
-    queryKey: ["jobsData", column.name],
+    queryKey: [JobsDataKey, column.name],
     queryFn: () =>
       fetchData(
         `${import.meta.env.VITE_API_URL}/jobs?application_state_id=${column.id}`

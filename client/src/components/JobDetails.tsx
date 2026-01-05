@@ -28,11 +28,9 @@ export default function JobDetails({ job, accentColour }: JobDetailsProps) {
       { jobId: id },
       {
         onSuccess: () => {
-          console.log("Job deleted successfully");
           toast.success("Job deleted successfully");
         },
         onError: () => {
-          console.error("Error deleting job");
           toast.error("Error deleting job, please try again");
         },
       }

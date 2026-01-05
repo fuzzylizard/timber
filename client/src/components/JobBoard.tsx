@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import type { Column } from "@/types.ts";
 import JobColumn from "./JobColumn";
 import NewJobColumn from "./NewJobColumn";
+import { JobColumnKey } from "@/constants";
 
 export default function JobBoard() {
   const { isPending, data, error } = useQuery<Column[]>({
-    queryKey: ["jobColumn"],
+    queryKey: [JobColumnKey],
     queryFn: async () => {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/application_states`
