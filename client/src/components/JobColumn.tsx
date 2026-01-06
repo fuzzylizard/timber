@@ -25,7 +25,6 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
       <div
         className={`text-lg text-center text-white p-2 rounded-md mb-4 bg-purple-500`}
       >
-        <div className="float-left">{column.icon}</div>
         <span>{column.name}</span>
         <EllipsisVertical className="float-right" />
       </div>
