@@ -21,7 +21,7 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
   });
 
   return (
-    <div className="w-90 bg-accent p-2 border" key={column.id}>
+    <div className="min-w-80 bg-accent p-2 border" key={column.id}>
       <div
         className={`text-lg text-center text-white p-2 rounded-md mb-4 bg-purple-500`}
       >

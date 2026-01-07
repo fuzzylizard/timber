@@ -32,7 +32,7 @@ export default function NewJobColumn() {
   }
 
   return (
-    <div className="w-90 bg-accent p-2 border">
+    <div className="min-w-80 bg-accent p-2 border">
       <div className="">
         {clicked && (
           <NewColumnInputField
