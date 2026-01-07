@@ -9,7 +9,6 @@
 #   end
 
 ApplicationState.create(
-  id: 1,
   name: "Applied"
 )
 

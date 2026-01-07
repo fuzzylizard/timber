@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::ApplicationStatesController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   # GETS /api/v1/application_states
   def index
