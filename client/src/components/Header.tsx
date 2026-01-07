@@ -1,4 +1,4 @@
-import { CircleUser, Columns3, Settings } from "lucide-react";
+import { CircleUser } from "lucide-react";
 
 export default function Header() {
   return (
@@ -8,9 +8,7 @@ export default function Header() {
           <h1 className="text-xl font-bold text-primary ">Timber Homepage</h1>
         </div>
         <div className="flex flex-row w-1/3 text-muted-foreground justify-center gap-1">
-          Job Search 2026 |
-          <Columns3 className="hover:text-foreground" />
-          <Settings />
+          Job Search 2026
         </div>
         <div className="text-right w-1/3 m-0">
           <div className="border rounded-full inline-block">
