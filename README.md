@@ -4,6 +4,7 @@ Timber is a simple job hunt tracking board similar to Huntr.co. It allows users 
 
 
 ## Requirements and Technologies Used
+
 - Ruby 4.0
 - Ruby on Rails 8.0
 - PostgreSQL 15
@@ -14,8 +15,11 @@ Timber is a simple job hunt tracking board similar to Huntr.co. It allows users 
 - Tanstack Query
 
 ## TODO
-- [ ] Ability to delete columns
+
 - [ ] Change backend to use columns instead of 'application_state'
 - [ ] Add React Router or Tanstack Router
+- [ ] Add User Authentication
 - [ ] Add Tests - Jest, React Testing Library
 - [ ] Add ability to reorder columns
+- [x] Ability to delete columns
+
