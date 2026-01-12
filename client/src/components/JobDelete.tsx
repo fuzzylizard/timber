@@ -13,11 +13,11 @@ import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 
 interface JobDeleteProps {
-  jobId: number;
+  id: number;
   onDelete: (id: number) => void;
 }
 
-export function JobDelete({ jobId, onDelete }: JobDeleteProps) {
+export function JobDelete({ id, onDelete }: JobDeleteProps) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -35,7 +35,7 @@ export function JobDelete({ jobId, onDelete }: JobDeleteProps) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={() => onDelete(jobId)}>
+          <AlertDialogAction onClick={() => onDelete(id)}>
             Delete
           </AlertDialogAction>
         </AlertDialogFooter>

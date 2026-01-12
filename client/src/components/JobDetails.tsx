@@ -16,8 +16,6 @@ interface JobDetailsProps {
 }
 
 export default function JobDetails({ job }: JobDetailsProps) {
-  const accColour = `border-l-purple-500`;
-
   const mutation = useDeleteJobMutation();
 
   function handleDelete(id: number): void {
@@ -35,11 +33,11 @@ export default function JobDetails({ job }: JobDetailsProps) {
   }
 
   return (
-    <Card className={`gap-1 border-l-6 ${accColour}`}>
+    <Card className="gap-1 border-l-6 border-l-purple-500">
       <CardHeader>
         <CardTitle>{job.company_name}</CardTitle>
         <CardAction>
-          <JobDelete jobId={job.id} onDelete={handleDelete} />
+          <JobDelete id={job.id} onDelete={handleDelete} />
         </CardAction>
       </CardHeader>
       <CardContent>
