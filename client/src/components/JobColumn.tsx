@@ -42,7 +42,7 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
       {data && (
         <div className="pt-4 pb-1">
           <div className="overflow-auto h-[calc(90dvh-8.5rem)]">
-            <JobsList jobs={data} accentColour="bg-purple-500" />
+            <JobsList jobs={data} />
           </div>
         </div>
       )}

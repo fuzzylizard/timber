@@ -9,19 +9,10 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useCreateJobMutation } from "@/hooks/use-jobs-hooks";
-import type { Column } from "@/types";
+import type { Column, Job } from "@/types";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
-type Inputs = {
-  company_name: string;
-  job_ad_url: string;
-  job_title: string;
-  company_url: string;
-  notes: string;
-  application_state_id: string;
-};
 
 interface NewJobFormProps {
   selectedColumnID: number;
@@ -39,7 +30,7 @@ export default function NewJobForm({
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Job>();
 
   function handleCancel() {
     reset();
@@ -48,7 +39,7 @@ export default function NewJobForm({
 
   const mutation = useCreateJobMutation();
 
-  function onSubmit(data: Inputs) {
+  function onSubmit(data: Job) {
     mutation.mutate(
       { job: data },
       {

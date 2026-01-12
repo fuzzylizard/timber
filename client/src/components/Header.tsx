@@ -5,7 +5,7 @@ export default function Header() {
     <header className="bg-accent shadow-sm">
       <div className="mx-auto flex flex-row justify-between gap-5 px-5 py-2">
         <div className="text-left w-1/3">
-          <h1 className="text-xl font-bold text-primary ">Timber Homepage</h1>
+          <h1 className="text-xl font-bold text-primary">Timber</h1>
         </div>
         <div className="flex flex-row w-1/3 text-muted-foreground justify-center gap-1">
           Job Search 2026
