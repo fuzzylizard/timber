@@ -3,8 +3,15 @@ import NewJobForm from "./NewJobForm";
 import JobsList from "./JobsList";
 import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "@/lib/fetch_utils";
-import { EllipsisVertical } from "lucide-react";
+import { EllipsisVertical, Move, Pencil, Trash2 } from "lucide-react";
 import { JobsDataKey } from "@/constants";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 interface JobColumnProps {
   column: Column;
@@ -26,7 +33,32 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
         className={`text-lg text-center text-white p-2 rounded-md mb-4 bg-purple-500`}
       >
         <span>{column.name}</span>
-        <EllipsisVertical className="float-right" />
+
+        <DropdownMenu>
+          <DropdownMenuTrigger className="float-right">
+            <EllipsisVertical className="size-6" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem className="cursor-pointer">
+              Rename
+              <DropdownMenuShortcut>
+                <Pencil className="size-4" />
+              </DropdownMenuShortcut>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              Reorder
+              <DropdownMenuShortcut>
+                <Move className="size-4" />
+              </DropdownMenuShortcut>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              Delete
+              <DropdownMenuShortcut>
+                <Trash2 className="size-4" />
+              </DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       <div className="text-center mb-2 text-foreground/50">
         <p>
