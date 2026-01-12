@@ -12,6 +12,10 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { useState } from "react";
+import DeleteColumn from "./DeleteColumn";
+import { useDeleteColumnMutation } from "@/hooks/use-columns-hooks";
+import { toast } from "sonner";
 
 interface JobColumnProps {
   column: Column;
@@ -19,6 +23,8 @@ interface JobColumnProps {
 }
 
 export default function JobColumn({ column, columns }: JobColumnProps) {
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+
   const { isPending, error, data } = useQuery<Job[]>({
     queryKey: [JobsDataKey, column.name],
     queryFn: () =>
@@ -26,6 +32,20 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
         `${import.meta.env.VITE_API_URL}/jobs?application_state_id=${column.id}`
       ),
   });
+
+  const mutation = useDeleteColumnMutation();
+
+  function handleDelete(columnId: number): void {
+    mutation.mutate(columnId, {
+      onSuccess: () => {
+        toast.success("Column deleted successfully");
+        setOpenDeleteDialog(false);
+      },
+      onError: () => {
+        toast.error("Error deleting column, please try again");
+      },
+    });
+  }
 
   return (
     <div className="min-w-80 bg-accent p-2 border" key={column.id}>
@@ -36,7 +56,7 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
 
         <DropdownMenu>
           <DropdownMenuTrigger className="float-right">
-            <EllipsisVertical className="size-6" />
+            <EllipsisVertical className="size-6 cursor-pointer" />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem className="cursor-pointer">
@@ -51,7 +71,10 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
                 <Move className="size-4" />
               </DropdownMenuShortcut>
             </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() => setOpenDeleteDialog(true)}
+            >
               Delete
               <DropdownMenuShortcut>
                 <Trash2 className="size-4" />
@@ -59,7 +82,15 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+
+        <DeleteColumn
+          openDialog={openDeleteDialog}
+          setOpenDialog={setOpenDeleteDialog}
+          columnId={column.id}
+          onDelete={handleDelete}
+        />
       </div>
+
       <div className="text-center mb-2 text-foreground/50">
         <p>
           {data ? data.length : 0}{" "}

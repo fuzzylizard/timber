@@ -22,9 +22,9 @@ export function useDeleteColumnMutation() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (columnId: { columnId: number }) => {
+    mutationFn: async (columnId: number) => {
       await deleteData(
-        `${import.meta.env.VITE_API_URL}/columns/${columnId.columnId}`
+        `${import.meta.env.VITE_API_URL}/application_states/${columnId}`
       );
     },
     onSuccess: () => {
