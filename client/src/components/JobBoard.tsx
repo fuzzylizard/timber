@@ -8,26 +8,34 @@ export default function JobBoard() {
   const { isPending, data, error } = useQuery<Column[]>({
     queryKey: [JobColumnKey],
     queryFn: async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/application_states`
-      );
+      const response = await fetch("/api/v1/application_states", {
+        credentials: "include",
+      });
       return await response.json();
     },
   });
 
+  if (error) {
+    console.error("Error fetching columns:", error);
+    return <div>Error loading columns: {String(error)}</div>;
+  }
+
+  if (isPending) {
+    return <div>Loading columns...</div>;
+  }
+
+  if (!data) {
+    return <div>No columns found.</div>;
+  }
+
   return (
     <>
-      {isPending && <div>Loading jobs...</div>}
-      {error && <div>Error loading jobs: {String(error)}</div>}
-      {!data && <div>No jobs found.</div>}
-      {data && (
-        <div className="grow flex flex-row overflow-x-auto">
-          {data.map((column: Column) => (
-            <JobColumn column={column} key={column.id} columns={data} />
-          ))}
-          <NewJobColumn />
-        </div>
-      )}
+      <div className="grow flex flex-row overflow-x-auto">
+        {data.map((column: Column) => (
+          <JobColumn column={column} key={column.id} columns={data} />
+        ))}
+        <NewJobColumn />
+      </div>
     </>
   );
 }

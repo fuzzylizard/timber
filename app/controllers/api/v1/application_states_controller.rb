@@ -4,11 +4,10 @@ module Api
   module V1
     # Understands handling API requests for ApplicationState resources
     class ApplicationStatesController < ApplicationController
-      skip_before_action :verify_authenticity_token
-
       # GETS /api/v1/application_states
       def index
         application_states = ApplicationState.all.order(:id)
+        puts("application_states: #{application_states.inspect}")
 
         render json: application_states
       end

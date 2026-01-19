@@ -1,3 +1,10 @@
+export interface User {
+  id: number;
+  email_address: string;
+  password: string;
+  password_confirmation?: string;
+}
+
 export interface Job {
   id: number;
   company_name: string;

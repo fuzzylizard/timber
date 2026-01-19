@@ -27,10 +27,7 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
 
   const { isPending, error, data } = useQuery<Job[]>({
     queryKey: [JobsDataKey, column.name],
-    queryFn: () =>
-      fetchData(
-        `${import.meta.env.VITE_API_URL}/jobs?application_state_id=${column.id}`
-      ),
+    queryFn: () => fetchData(`/api/v1/jobs?application_state_id=${column.id}`),
   });
 
   const mutation = useDeleteColumnMutation();
