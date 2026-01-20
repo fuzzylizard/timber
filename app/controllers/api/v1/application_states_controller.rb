@@ -21,7 +21,7 @@ module Api
 
       # POST /api/v1/application_states
       def create
-        application_state = ApplicationState.new(application_state_params)
+        application_state = Current.session.user.application_states.new(application_state_params)
 
         if application_state.save
           render json: application_state, status: :created

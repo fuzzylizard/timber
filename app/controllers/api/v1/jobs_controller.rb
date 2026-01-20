@@ -10,9 +10,9 @@ module Api
       # GET /api/v1/jobs
       def index
         jobs = if params[:application_state_id]
-                 Job.where(application_state_id: params[:application_state_id])
+                 Job.where(application_state_id: params[:application_state_id]).order(:created_at)
                else
-                 Job.all
+                 Job.all.order(:created_at)
                end
         render json: jobs
       end
@@ -27,7 +27,8 @@ module Api
       # Creates a new job
       # POST /api/v1/jobs
       def create
-        job = Job.new(job_params)
+        # puts ">>>>> Received job params: #{job_params.inspect}"
+        job = Current.session.user.jobs.new(job_params)
 
         if job.save
           render json: job, status: :created

@@ -3,6 +3,7 @@
 # Represents a user in the system
 class User < ApplicationRecord
   has_secure_password
+
   has_many :sessions, dependent: :destroy
   has_many :jobs
   has_many :application_states
