@@ -27,7 +27,6 @@ module Api
       # Creates a new job
       # POST /api/v1/jobs
       def create
-        # puts ">>>>> Received job params: #{job_params.inspect}"
         job = Current.session.user.jobs.new(job_params)
 
         if job.save
