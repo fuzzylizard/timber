@@ -7,7 +7,7 @@ export function useCreateColumnMutation() {
 
   return useMutation({
     mutationFn: async (application_state: unknown) => {
-      await postData("/v1/application_states", application_state);
+      await postData("/api/v1/application_states", application_state);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [JobColumnKey] });
@@ -20,7 +20,7 @@ export function useDeleteColumnMutation() {
 
   return useMutation({
     mutationFn: async (columnId: number) => {
-      await deleteData(`/v1/application_states/${columnId}`);
+      await deleteData(`/api/v1/application_states/${columnId}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [JobColumnKey] });
