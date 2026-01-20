@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_14_184102) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_20_153821) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -20,6 +20,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_14_184102) do
     t.string "icon", default: "Calendar"
     t.string "name"
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_application_states_on_user_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -31,7 +33,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_14_184102) do
     t.string "job_title"
     t.text "notes"
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["application_state_id"], name: "index_jobs_on_application_state_id"
+    t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
