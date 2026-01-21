@@ -63,7 +63,11 @@ function App() {
       )}
       {authChecked && loggedIn && (
         <>
-          <Header />
+          <Header
+            setUser={setUser}
+            setLoggedIn={setLoggedIn}
+            setAuthChecked={setAuthChecked}
+          />
           <JobBoard />
           <Footer />
         </>
