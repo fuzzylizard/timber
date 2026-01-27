@@ -13,6 +13,7 @@ Timber is a simple job hunt tracking board similar to Huntr.co. It allows users 
 - Shadcn UI
 
 ## BACKLOG
+- [ ] Clean up Auth code in Client app (all over the place right now)
 - [ ] Ability to view job details in a modal
 - [ ] Add Tests - Jest, React Testing Library
 - [ ] Change backend to use columns instead of 'application_state'
