@@ -8,7 +8,7 @@ export default function JobBoard() {
   const { isPending, data, error } = useQuery<Column[]>({
     queryKey: [JobColumnKey],
     queryFn: async () => {
-      const response = await fetch("/api/v1/application_states", {
+      const response = await fetch("/api/v1/columns", {
         credentials: "include",
       });
       return await response.json();

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
     namespace :v1 do
       resources :jobs
-      resources :application_states
+      resources :columns
     end
   end
 

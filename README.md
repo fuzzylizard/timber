@@ -13,10 +13,11 @@ Timber is a simple job hunt tracking board similar to Huntr.co. It allows users 
 - Shadcn UI
 
 ## BACKLOG
+
+- [ ] When creating a new column, add correct order value so column is at the end
 - [ ] Clean up Auth code in Client app (all over the place right now)
 - [ ] Ability to view job details in a modal
 - [ ] Add Tests - Jest, React Testing Library
-- [ ] Change backend to use columns instead of 'application_state'
 - [ ] Add ability to edit jobs
 - [ ] Add ability to edit columns
 - [ ] Add ability to reorder columns
@@ -27,3 +28,5 @@ Timber is a simple job hunt tracking board similar to Huntr.co. It allows users 
 - [x] Add User to React frontend queries/mutations
 - [x] Associate jobs to a user
 - [x] Ability to Log out
+- [x] Add order field to columns
+- [x] Change backend to use columns instead of 'application_state'

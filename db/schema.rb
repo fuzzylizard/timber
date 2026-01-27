@@ -10,22 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_20_153821) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_27_164729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "application_states", force: :cascade do |t|
+  create_table "columns", force: :cascade do |t|
     t.string "colour", default: "bg-purple-500"
     t.datetime "created_at", null: false
     t.string "icon", default: "Calendar"
     t.string "name"
+    t.integer "order"
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.index ["user_id"], name: "index_application_states_on_user_id"
+    t.index ["user_id"], name: "index_columns_on_user_id"
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.bigint "application_state_id"
+    t.bigint "column_id"
     t.string "company_name"
     t.string "company_url"
     t.datetime "created_at", null: false
@@ -34,7 +35,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_20_153821) do
     t.text "notes"
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.index ["application_state_id"], name: "index_jobs_on_application_state_id"
+    t.index ["column_id"], name: "index_jobs_on_column_id"
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
@@ -55,6 +56,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_20_153821) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
-  add_foreign_key "jobs", "application_states"
+  add_foreign_key "jobs", "columns"
   add_foreign_key "sessions", "users"
 end

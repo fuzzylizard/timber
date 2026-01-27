@@ -17,7 +17,7 @@ export default function NewJobColumn() {
     event.preventDefault();
 
     mutation.mutate(
-      { application_state: { name: columnName } },
+      { column: { name: columnName } },
       {
         onSuccess: () => {
           setColumnName("");
@@ -27,7 +27,7 @@ export default function NewJobColumn() {
           // TODO add toast.error here
           console.error("Error creating column", error);
         },
-      }
+      },
     );
   }
 

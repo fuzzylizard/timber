@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :sessions, dependent: :destroy
   has_many :jobs
-  has_many :application_states
+  has_many :columns
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 end

@@ -9,8 +9,8 @@ module Api
       # Returns all jobs
       # GET /api/v1/jobs
       def index
-        jobs = if params[:application_state_id]
-                 Job.where(application_state_id: params[:application_state_id]).order(:created_at)
+        jobs = if params[:column_id]
+                 Job.where(column_id: params[:column_id]).order(:created_at)
                else
                  Job.all.order(:created_at)
                end
@@ -59,7 +59,7 @@ module Api
       private
 
       def job_params
-        params.require(:job).permit(:company_name, :job_ad_url, :job_title, :company_url, :notes, :application_state_id)
+        params.require(:job).permit(:company_name, :job_ad_url, :job_title, :company_url, :notes, :column_id)
       end
     end
   end

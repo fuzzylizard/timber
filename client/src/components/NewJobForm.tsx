@@ -51,7 +51,7 @@ export default function NewJobForm({
           // TODO add toast.error here
           console.error("Error creating job");
         },
-      }
+      },
     );
   }
 
@@ -109,9 +109,9 @@ export default function NewJobForm({
               />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="application_state_id">Column</Label>
+              <Label htmlFor="column_id">Column</Label>
               <select
-                {...register("application_state_id")}
+                {...register("column_id")}
                 className="border rounded-md p-2"
                 defaultValue={selectedColumnID}
               >

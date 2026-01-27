@@ -13,7 +13,7 @@ export interface Job {
   company_url: string;
   notes: string;
   created_at: string;
-  application_state_id: number;
+  column_id: number;
 }
 
 export interface Column {
