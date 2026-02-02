@@ -1,5 +1,5 @@
+import { signInQuery } from "@/lib/auth";
 import type { User } from "@/types";
-import { QueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -9,8 +9,6 @@ interface AuthFormProps {
   setLoggedIn: (loggedIn: boolean) => void;
   setAuthChecked: (authChecked: boolean) => void;
 }
-
-const queryClient = new QueryClient();
 
 export default function AuthForm({
   isSignIn,
@@ -23,23 +21,7 @@ export default function AuthForm({
   const { register, handleSubmit, reset } = useForm<User>();
 
   async function signIn(user: User) {
-    const data = await queryClient.fetchQuery<User>({
-      queryKey: ["userData"],
-      queryFn: async () => {
-        const response = await fetch("/api/session", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email_address: user.email_address,
-            password: user.password,
-          }),
-          credentials: "include",
-        });
-        return await response.json();
-      },
-    });
+    const data = await signInQuery(user);
 
     console.log("Fetched user data:", data);
 
@@ -53,6 +35,7 @@ export default function AuthForm({
   }
 
   function signUp(data: User) {
+    console.log("Sign Up data:", data);
     reset();
   }
 

@@ -1,37 +1,22 @@
-import "./App.css";
 import Header from "@/components/Header.tsx";
+import JobBoard from "@/components/JobBoard.tsx";
+import { Toaster } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import JobBoard from "@/components/JobBoard.tsx";
-import Footer from "./components/Footer";
-import { Toaster } from "@/components/ui/sonner";
 import { useEffect, useState } from "react";
-import type { User } from "./types";
-import { userDataKey } from "./constants";
+import "./App.css";
 import AuthForm from "./components/AuthForm";
-
-const queryClient = new QueryClient();
-
-async function getUserData() {
-  const data = await queryClient.fetchQuery<User>({
-    queryKey: [userDataKey],
-    queryFn: async () => {
-      const response = await fetch("/api/session", {
-        credentials: "include",
-      });
-      return await response.json();
-    },
-  });
-
-  return data;
-}
+import Footer from "./components/Footer";
+import { getUserData } from "./lib/auth.ts";
+import type { User } from "./types";
 
 function App() {
   const [authChecked, setAuthChecked] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
-  // TODO this might not be the best way of doing this
+  const queryClient = new QueryClient();
+
   useEffect(() => {
     async function fetchUser() {
       setAuthChecked(false);
