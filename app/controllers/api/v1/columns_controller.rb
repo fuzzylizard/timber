@@ -6,8 +6,7 @@ module Api
     class ColumnsController < ApplicationController
       # GETS /api/v1/columns
       def index
-        columns = Column.all.order(:order)
-        puts("columns: #{columns.inspect}")
+        columns = Current.session.user.columns.all.order(:order)
 
         render json: columns
       end
@@ -32,7 +31,7 @@ module Api
 
       # PUT /api/v1/columns/:id
       def update
-        column = Column.find(params[:id])
+        column = Current.session.user.columns.find(params[:id])
 
         if column.update(column_params)
           render json: column
@@ -43,7 +42,7 @@ module Api
 
       # DELETE /api/v1/columns/:id
       def destroy
-        column = Column.find(params[:id])
+        column = Current.session.user.columns.find(params[:id])
         column.destroy
 
         head :no_content

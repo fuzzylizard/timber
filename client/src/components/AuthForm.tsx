@@ -1,4 +1,4 @@
-import { signInQuery } from "@/lib/auth";
+import { signInQuery, signUpQuery } from "@/lib/auth";
 import type { User } from "@/types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -23,8 +23,6 @@ export default function AuthForm({
   async function signIn(user: User) {
     const data = await signInQuery(user);
 
-    console.log("Fetched user data:", data);
-
     if (data) {
       setUser(data);
       setLoggedIn(true);
@@ -34,8 +32,15 @@ export default function AuthForm({
     reset();
   }
 
-  function signUp(data: User) {
-    console.log("Sign Up data:", data);
+  async function signUp(user: User) {
+    const data = await signUpQuery(user);
+
+    if (data) {
+      setUser(data);
+      setLoggedIn(true);
+      setAuthChecked(true);
+    }
+
     reset();
   }
 

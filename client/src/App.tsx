@@ -6,7 +6,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useEffect, useState } from "react";
 import "./App.css";
 import AuthForm from "./components/AuthForm";
-import Footer from "./components/Footer";
 import { getUserData } from "./lib/auth.ts";
 import type { User } from "./types";
 
@@ -53,8 +52,7 @@ function App() {
             setLoggedIn={setLoggedIn}
             setAuthChecked={setAuthChecked}
           />
-          <JobBoard />
-          <Footer />
+          <JobBoard user={user} />
         </>
       )}
       <ReactQueryDevtools />

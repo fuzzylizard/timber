@@ -101,7 +101,7 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
       {error && <div>Error loading jobs: {String(error)}</div>}
       {data && (
         <div className="pt-4 pb-1">
-          <div className="overflow-auto h-[calc(90dvh-9.2rem)]">
+          <div className="overflow-auto h-[calc(90dvh-6.2rem)]">
             <JobsList jobs={data} />
           </div>
         </div>

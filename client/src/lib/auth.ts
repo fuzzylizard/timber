@@ -37,3 +37,26 @@ export async function signInQuery(user: User) {
     },
   });
 }
+
+export async function signUpQuery(user: User) {
+  return await queryClient.fetchQuery<User>({
+    queryKey: ["userData"],
+    queryFn: async () => {
+      const response = await fetch("/api/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: {
+            email_address: user.email_address,
+            password: user.password,
+            password_confirmation: user.password_confirmation,
+          },
+        }),
+        credentials: "include",
+      });
+      return await response.json();
+    },
+  });
+}

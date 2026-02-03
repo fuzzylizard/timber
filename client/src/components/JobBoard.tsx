@@ -1,12 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import type { Column } from "@/types.ts";
+import type { Column, User } from "@/types.ts";
 import JobColumn from "./JobColumn";
 import NewJobColumn from "./NewJobColumn";
 import { JobColumnKey } from "@/constants";
 
-export default function JobBoard() {
+interface JobBoardProps {
+  user: User | null;
+}
+
+export default function JobBoard({ user }: JobBoardProps) {
   const { isPending, data, error } = useQuery<Column[]>({
-    queryKey: [JobColumnKey],
+    queryKey: [JobColumnKey, user?.id],
     queryFn: async () => {
       const response = await fetch("/api/v1/columns", {
         credentials: "include",
