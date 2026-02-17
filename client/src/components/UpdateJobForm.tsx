@@ -8,21 +8,18 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { useCreateJobMutation } from "@/hooks/use-jobs-hooks";
+import { useUpdateJobMutation } from "@/hooks/use-jobs-hooks";
 import type { Column, Job } from "@/types";
-import { Plus } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
-interface NewJobFormProps {
-  selectedColumnID: number;
+interface UpdateJobFormProps {
+  job: Job;
   columns: Column[];
 }
 
-export default function NewJobForm({
-  selectedColumnID,
-  columns,
-}: NewJobFormProps) {
+export default function UpdateJobForm({ job, columns }: UpdateJobFormProps) {
   const [open, setOpen] = useState(false);
 
   const {
@@ -32,9 +29,13 @@ export default function NewJobForm({
     formState: { errors },
   } = useForm<Job>({
     defaultValues: {
-      job_title: "",
-      job_ad_url: "",
-      notes: "",
+      id: job.id,
+      company_name: job.company_name,
+      job_ad_url: job.job_ad_url,
+      job_title: job.job_title,
+      company_url: job.company_url,
+      notes: job.notes,
+      column_id: job.column_id,
     },
   });
 
@@ -43,19 +44,19 @@ export default function NewJobForm({
     setOpen(false);
   }
 
-  const mutation = useCreateJobMutation();
+  const mutation = useUpdateJobMutation();
 
   function onSubmit(data: Job) {
     mutation.mutate(
-      { job: data },
+      { job: data, id: job.id },
       {
         onSuccess: () => {
           setOpen(false);
           reset();
         },
         onError: () => {
-          // TODO add toast.error here
-          console.error("Error creating job");
+          toast.error("Error updating job, please try again");
+          console.error("Error updating job", errors);
         },
       },
     );
@@ -63,23 +64,18 @@ export default function NewJobForm({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          className="cursor-pointer w-full hover:border-slate-400 hover:shadow-sm"
-        >
-          <Plus className="size-4" />
-        </Button>
+      <DialogTrigger asChild className="cursor-pointer hover:underline">
+        <p>{job.company_name}</p>
       </DialogTrigger>
 
       <DialogContent className="max-w-4xl">
         <DialogHeader>
-          <DialogTitle>New Job Application</DialogTitle>
+          <DialogTitle>Update Job Application</DialogTitle>
           <DialogDescription>
-            Enter the details of the new job application you want to track.
+            Update the details of the job application you want to track.
           </DialogDescription>
         </DialogHeader>
-        <form id="new-job-form" onSubmit={handleSubmit(onSubmit)}>
+        <form id="update-job-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4">
             <div className="grid gap-3">
               <Label htmlFor="company_name">Company Name</Label>
@@ -124,7 +120,7 @@ export default function NewJobForm({
               <select
                 {...register("column_id")}
                 className="border rounded-md p-2"
-                defaultValue={selectedColumnID}
+                defaultValue={job.column_id}
               >
                 {columns.map((column, index) => (
                   <option key={index} value={column.id}>
@@ -141,7 +137,7 @@ export default function NewJobForm({
             </Button>
             <input
               type="submit"
-              value="Save"
+              value="Update"
               className="btn btn-primary border rounded-md px-4 py-1 bg-blue-500 text-white hover:bg-blue-600 cursor-pointer ml-4"
             />
           </div>

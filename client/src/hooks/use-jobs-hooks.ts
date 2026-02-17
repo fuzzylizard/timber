@@ -1,5 +1,5 @@
 import { JobsDataKey } from "@/constants";
-import { deleteData, postData } from "@/lib/fetch_utils";
+import { deleteData, postData, putData } from "@/lib/fetch_utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export function useCreateJobMutation() {
@@ -8,6 +8,19 @@ export function useCreateJobMutation() {
   return useMutation({
     mutationFn: async (job: unknown) => {
       await postData("/api/v1/jobs", job);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [JobsDataKey] });
+    },
+  });
+}
+
+export function useUpdateJobMutation() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ job, id }: { job: unknown; id: number }) => {
+      await putData(`/api/v1/jobs/${id}`, job);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [JobsDataKey] });

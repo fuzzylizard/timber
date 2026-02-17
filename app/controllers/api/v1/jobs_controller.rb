@@ -39,7 +39,7 @@ module Api
       # Updates a job
       # PUT /api/v1/jobs/:id
       def update
-        job = Current.session.use.jobs.find(params[:id])
+        job = Current.session.user.jobs.find(params[:id])
 
         if job.update(job_params)
           render json: job

@@ -1,4 +1,4 @@
-import type { Job } from "@/types.ts";
+import type { Column, Job } from "@/types.ts";
 import {
   Card,
   CardAction,
@@ -10,12 +10,14 @@ import { formatRelativeDate } from "@/lib/utils";
 import { JobDelete } from "./JobDelete";
 import { useDeleteJobMutation } from "@/hooks/use-jobs-hooks";
 import { toast } from "sonner";
+import UpdateJobForm from "./UpdateJobForm";
 
 interface JobDetailsProps {
   job: Job;
+  columns: Column[];
 }
 
-export default function JobDetails({ job }: JobDetailsProps) {
+export default function JobDetails({ job, columns }: JobDetailsProps) {
   const mutation = useDeleteJobMutation();
 
   function handleDelete(id: number): void {
@@ -28,14 +30,16 @@ export default function JobDetails({ job }: JobDetailsProps) {
         onError: () => {
           toast.error("Error deleting job, please try again");
         },
-      }
+      },
     );
   }
 
   return (
     <Card className="gap-1 border-l-6 border-l-purple-500">
       <CardHeader>
-        <CardTitle>{job.company_name}</CardTitle>
+        <CardTitle>
+          <UpdateJobForm job={job} columns={columns} />
+        </CardTitle>
         <CardAction>
           <JobDelete id={job.id} onDelete={handleDelete} />
         </CardAction>
