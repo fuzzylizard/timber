@@ -35,18 +35,14 @@ export default function JobDetails({ job, columns }: JobDetailsProps) {
   }
 
   return (
-    <Card className="gap-1 border-l-6 border-l-purple-500">
-      <CardHeader>
-        <CardTitle>
-          <UpdateJobForm job={job} columns={columns} />
-        </CardTitle>
-        <CardAction>
-          <JobDelete id={job.id} onDelete={handleDelete} />
-        </CardAction>
-      </CardHeader>
+    <Card className="gap-1 border-l-6 border-l-purple-500 py-3 rounded-sm">
       <CardContent>
+        <div className="flex items-center justify-between">
+          <UpdateJobForm job={job} columns={columns} />
+          <JobDelete id={job.id} onDelete={handleDelete} />
+        </div>
         <p className="text-sm">{job.job_title}</p>
-        <p className="text-sm mt-2 text-muted-foreground/50 text-right">
+        <p className="text-sm text-muted-foreground/50 text-right">
           {formatRelativeDate(job.created_at)}
         </p>
       </CardContent>

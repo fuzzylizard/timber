@@ -65,7 +65,7 @@ export default function UpdateJobForm({ job, columns }: UpdateJobFormProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild className="cursor-pointer hover:underline">
-        <p>{job.company_name}</p>
+        <p className="font-bold">{job.company_name}</p>
       </DialogTrigger>
 
       <DialogContent className="max-w-4xl">
