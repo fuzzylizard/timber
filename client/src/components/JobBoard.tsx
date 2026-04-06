@@ -6,9 +6,10 @@ import { JobColumnKey } from "@/constants";
 
 interface JobBoardProps {
   user: User | null;
+  filterString: string;
 }
 
-export default function JobBoard({ user }: JobBoardProps) {
+export default function JobBoard({ user, filterString }: JobBoardProps) {
   const { isPending, data, error } = useQuery<Column[]>({
     queryKey: [JobColumnKey, user?.id],
     queryFn: async () => {
@@ -36,7 +37,12 @@ export default function JobBoard({ user }: JobBoardProps) {
     <>
       <div className="grow flex flex-row overflow-x-auto">
         {data.map((column: Column) => (
-          <JobColumn column={column} key={column.id} columns={data} />
+          <JobColumn
+            column={column}
+            key={column.id}
+            columns={data}
+            filterString={filterString}
+          />
         ))}
         <NewJobColumn />
       </div>

@@ -13,6 +13,7 @@ function App() {
   const [authChecked, setAuthChecked] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [filterString, setFilterString] = useState("");
 
   const queryClient = new QueryClient();
 
@@ -51,8 +52,10 @@ function App() {
             setUser={setUser}
             setLoggedIn={setLoggedIn}
             setAuthChecked={setAuthChecked}
+            setFilterString={setFilterString}
+            filterString={filterString}
           />
-          <JobBoard user={user} />
+          <JobBoard user={user} filterString={filterString} />
         </>
       )}
       <ReactQueryDevtools />

@@ -20,9 +20,14 @@ import { toast } from "sonner";
 interface JobColumnProps {
   column: Column;
   columns: Column[];
+  filterString: string;
 }
 
-export default function JobColumn({ column, columns }: JobColumnProps) {
+export default function JobColumn({
+  column,
+  columns,
+  filterString,
+}: JobColumnProps) {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 
   const { isPending, error, data } = useQuery<Job[]>({
@@ -102,7 +107,11 @@ export default function JobColumn({ column, columns }: JobColumnProps) {
       {data && (
         <div className="pt-4 pb-1">
           <div className="overflow-auto h-[calc(90dvh-9rem)]">
-            <JobsList jobs={data} columns={columns} />
+            <JobsList
+              jobs={data}
+              columns={columns}
+              filterString={filterString}
+            />
           </div>
         </div>
       )}

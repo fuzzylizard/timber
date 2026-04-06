@@ -12,6 +12,8 @@ interface HeaderProps {
   setUser: (user: User | null) => void;
   setLoggedIn: (loggedIn: boolean) => void;
   setAuthChecked: (authChecked: boolean) => void;
+  setFilterString: (filterString: string) => void;
+  filterString: string;
 }
 
 const queryClient = new QueryClient();
@@ -20,6 +22,8 @@ export default function Header({
   setUser,
   setLoggedIn,
   setAuthChecked,
+  setFilterString,
+  filterString,
 }: HeaderProps) {
   async function handleLogout() {
     await fetch("/api/session", {
@@ -40,15 +44,23 @@ export default function Header({
   return (
     <header className="bg-accent shadow-sm">
       <div className="mx-auto flex flex-column justify-between gap-5 px-5 py-2">
-        <div className="text-left w-1/3">
+        <div className="text-left w-1/3 items-center flex">
           <h1 className="text-xl font-bold text-primary">
             Timber - Tracking your Job Hunt
           </h1>
         </div>
-        <div className="flex flex-row w-1/3 text-muted-foreground justify-center gap-1">
+        <div className="flex flex-row w-1/3 text-muted-foreground justify-center gap-1 items-center">
           Job Search 2026
+          <input
+            type="text"
+            name="search"
+            placeholder="Search..."
+            value={filterString}
+            onChange={(e) => setFilterString(e.target.value)}
+            className="border rounded-xl bg-background text-foreground px-2 py-1 focus:outline-none focus:ring focus:ring-primary/50 focus:border-transparent"
+          />
         </div>
-        <div className="text-right w-1/3 m-0">
+        <div className="text-right w-1/3 m-0 flex items-center justify-end">
           <div className="border rounded-full inline-block">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
