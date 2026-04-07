@@ -1,15 +1,9 @@
-import type { Column, Job } from "@/types.ts";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { formatRelativeDate } from "@/lib/utils";
-import { JobDelete } from "./JobDelete";
+import { Card, CardContent } from "@/components/ui/card";
 import { useDeleteJobMutation } from "@/hooks/use-jobs-hooks";
+import { formatRelativeDate } from "@/lib/utils";
+import type { Column, Job } from "@/types.ts";
 import { toast } from "sonner";
+import { JobDelete } from "./JobDelete";
 import UpdateJobForm from "./UpdateJobForm";
 
 interface JobDetailsProps {
@@ -35,8 +29,8 @@ export default function JobDetails({ job, columns }: JobDetailsProps) {
   }
 
   return (
-    <Card className="gap-1 border-l-6 border-l-purple-500 py-3 rounded-sm">
-      <CardContent>
+    <Card className="gap-1 border-l-6 border-l-purple-500 py-2 rounded-sm">
+      <CardContent className="py-0 text-sm">
         <div className="flex items-center justify-between">
           <UpdateJobForm job={job} columns={columns} />
           <JobDelete id={job.id} onDelete={handleDelete} />
