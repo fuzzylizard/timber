@@ -16,10 +16,11 @@ Timber is a simple job hunt tracking board similar to Huntr.co. It allows users 
 - [ ] When signing up, default columns should be created for the user
 - [ ] When creating a new column, add correct order value so column is at the end
 - [ ] Add Tests - Jest, React Testing Library
-- [ ] Add ability to edit columns
+- [ ] Add ability to rename columns
 - [ ] Add ability to reorder columns
 - [ ] Add ability to drag and drop jobs between columns
 - [ ] Add tags to jobs (can be simple implementation with a string field for now)
+- [x] Add ability to filter jobs by company name
 - [x] Ability to delete columns
 - [x] Add ability to add new columns
 - [x] Add User Authentication to React Frontend

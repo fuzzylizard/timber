@@ -21,12 +21,14 @@ interface JobColumnProps {
   column: Column;
   columns: Column[];
   filterString: string;
+  colour: string;
 }
 
 export default function JobColumn({
   column,
   columns,
   filterString,
+  colour,
 }: JobColumnProps) {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 
@@ -52,7 +54,7 @@ export default function JobColumn({
   return (
     <div className="min-w-80 bg-accent p-2 border" key={column.id}>
       <div
-        className={`text-lg text-center text-white p-2 rounded-md mb-4 bg-purple-500`}
+        className={`text-lg text-center text-white p-2 rounded-md mb-4 ${colour}`}
       >
         <span>{column.name}</span>
 
@@ -111,6 +113,7 @@ export default function JobColumn({
               jobs={data}
               columns={columns}
               filterString={filterString}
+              colour={colour}
             />
           </div>
         </div>

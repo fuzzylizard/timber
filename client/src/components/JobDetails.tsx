@@ -9,10 +9,12 @@ import UpdateJobForm from "./UpdateJobForm";
 interface JobDetailsProps {
   job: Job;
   columns: Column[];
+  colour: string;
 }
 
-export default function JobDetails({ job, columns }: JobDetailsProps) {
+export default function JobDetails({ job, columns, colour }: JobDetailsProps) {
   const mutation = useDeleteJobMutation();
+  const bColour = colour.replace("bg-", "border-l-");
 
   function handleDelete(id: number): void {
     mutation.mutate(
@@ -29,7 +31,7 @@ export default function JobDetails({ job, columns }: JobDetailsProps) {
   }
 
   return (
-    <Card className="gap-1 border-l-6 border-l-purple-500 py-2 rounded-sm">
+    <Card className={`gap-1 py-2 rounded-sm border-0 border-l-4 ${bColour}`}>
       <CardContent className="py-0 text-sm">
         <div className="flex items-center justify-between">
           <UpdateJobForm job={job} columns={columns} />

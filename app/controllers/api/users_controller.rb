@@ -6,7 +6,10 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     if @user.save
+      Column.create_default_columns_for_user(@user)
+
       render json: { message: 'User created successfully', user: @user }, status: :created
     else
       render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity

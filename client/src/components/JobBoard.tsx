@@ -4,6 +4,17 @@ import JobColumn from "./JobColumn";
 import NewJobColumn from "./NewJobColumn";
 import { JobColumnKey } from "@/constants";
 
+const JOB_COLOURS = [
+  "bg-purple-500",
+  "bg-green-500",
+  "bg-blue-500",
+  "bg-yellow-500",
+  "bg-pink-500",
+  "bg-indigo-500",
+  "bg-red-500",
+  "bg-teal-500",
+];
+
 interface JobBoardProps {
   user: User | null;
   filterString: string;
@@ -36,12 +47,13 @@ export default function JobBoard({ user, filterString }: JobBoardProps) {
   return (
     <>
       <div className="grow flex flex-row overflow-x-auto">
-        {data.map((column: Column) => (
+        {data.map((column: Column, index: number) => (
           <JobColumn
             column={column}
             key={column.id}
             columns={data}
             filterString={filterString}
+            colour={JOB_COLOURS[index % JOB_COLOURS.length]}
           />
         ))}
         <NewJobColumn />

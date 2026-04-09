@@ -6,12 +6,14 @@ interface JobsListProps {
   jobs: Job[];
   columns: Column[];
   filterString: string;
+  colour: string;
 }
 
 export default function JobsList({
   jobs,
   columns,
   filterString,
+  colour,
 }: JobsListProps) {
   const filteredJobs = useMemo(() => {
     if (filterString.trim().length >= 3) {
@@ -33,7 +35,7 @@ export default function JobsList({
     <>
       {filteredJobs.map((job: Job) => (
         <div key={job.id} className="my-2">
-          <JobDetails job={job} columns={columns} />
+          <JobDetails job={job} columns={columns} colour={colour} />
         </div>
       ))}
     </>
