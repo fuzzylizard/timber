@@ -54,7 +54,7 @@ export default function Header({
           <input
             type="text"
             name="search"
-            placeholder="Search..."
+            placeholder="Filter"
             value={filterString}
             onChange={(e) => setFilterString(e.target.value)}
             className="border rounded-xl bg-background text-foreground px-2 py-1 focus:outline-none focus:ring focus:ring-primary/50 focus:border-transparent"

@@ -10,9 +10,9 @@ module Api
       # GET /api/v1/jobs
       def index
         jobs = if params[:column_id]
-                 Job.where(column_id: params[:column_id]).order(:created_at)
+                 Job.where(column_id: params[:column_id]).order(created_at: :desc)
                else
-                 Job.all.order(:created_at)
+                 Job.all.order(created_at: :desc)
                end
         render json: jobs
       end
