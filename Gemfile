@@ -4,29 +4,10 @@ gem 'rails', '~> 8.1.1'
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem 'propshaft'
 gem 'pg'
-# Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '>= 5.0'
-# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem 'importmap-rails'
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem 'turbo-rails'
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem 'stimulus-rails'
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+gem 'tailwindcss-rails', '~> 4.4'
 gem 'jbuilder'
-
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-gem 'bcrypt', '~> 3.1'
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[ windows jruby ]
-
-# Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
-gem 'solid_cable'
-gem 'solid_cache'
-gem 'solid_queue'
-
-# Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
@@ -38,9 +19,32 @@ gem 'thruster', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'image_processing', '~> 1.2'
 
+
+# ---- Delete All This
+
+# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+gem 'importmap-rails'
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem 'turbo-rails'
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem 'stimulus-rails'
+
+
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+gem 'bcrypt', '~> 3.1'
+
+# /--- Delete All This
+
+
+# Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
+gem 'solid_cable'
+gem 'solid_cache'
+gem 'solid_queue'
+
+
 # CUSTOM GEMS
 gem 'rack-cors'
-gem 'tailwindcss-rails', '~> 4.4'
+
 
 group :development, :test do
   gem 'brakeman', require: false
